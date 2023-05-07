@@ -1,0 +1,1 @@
+Get-ChildItem .\ -include node_modules -Recurse | foreach ($_) { remove-item $_.fullname -Force -Recurse }
