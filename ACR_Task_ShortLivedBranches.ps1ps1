@@ -1,0 +1,10 @@
+# Creates an ACR task to delete all the short-lived branches tags older than 5 days.
+# USE --dry-run BEFORE CREATING THE ACTUAL TASK
+# Replace "acrpocdeveastus" with your registry name
+
+az acr task create `
+--name "Cleanup_ShortLived_BranchImages" `
+ --cmd "acr purge --filter '.*:^(feature|bugfix|hotfix).*$' --ago 5d --untagged" `
+--schedule "0 0 * * 0" `
+ --registry acrpocdeveastus `
+  --context /dev/null
